@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MyRecipe</string>
+    <string name="recipe_picture">Recipe picture</string>
+    <string name="favorite">Favorite</string>
+    <string name="all_recipes">All recipes</string>
+    <string name="add_recipe">Add recipe</string>
+    <string name="save">Save and close</string>
+    <string name="save_and_add">Save step and add one more</string>
+    <string name="add_photo">Add photo</string>
+    <string name="title_recipe">Recipe title *</string>
+    <string name="category_recipe">Recipe category</string>
+    <string name="steps_recipe">Recipe steps</string>
+    <string name="step_photo">Step photo</string>
+    <string name="add_info_photo">Add info and photos</string>
+    <string name="recipe_content_fragment">New recipe / Change recipe</string>
+    <string name="feed_fragment">All recipes</string>
+    <string name="remove">Remove</string>
+    <string name="menu_edit">Edit</string>
+    <string name="no_recipes">Unfortunately there are no recipes here. Please click Add recipe to add new recipe.</string>
+    <string name="search_recipes">Search recipes</string>
+    <string name="favorite_recipes">Favorite recipes</string>
+    <string name="choose_the_categories">Choose the categories</string>
+    <string name="european">European</string>
+    <string name="asian">Asian</string>
+    <string name="panasian">Panasian</string>
+    <string name="eastern">Eastern</string>
+    <string name="american">American</string>
+    <string name="russian">Russian</string>
+    <string name="mediterranean">Mediterranean</string>
+    <string name="filters">Filters</string>
+    <string name="show_the_recipes">Show the recipes</string>
+    <string name="add_step">Add step</string>
+</resources>

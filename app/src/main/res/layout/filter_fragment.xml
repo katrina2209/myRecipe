@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:id="@+id/checkbox_container"
+    tools:context=".ui.FilterFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_the_categories"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="16pt"/>
+
+    <CheckBox
+        android:id="@+id/european"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:enabled="true"
+        android:text="@string/european"/>
+    <CheckBox
+        android:id="@+id/asian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:enabled="true"
+        android:text="@string/asian"/>
+    <CheckBox
+        android:id="@+id/panasian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:enabled="true"
+        android:text="@string/panasian"/>
+    <CheckBox
+        android:id="@+id/eastern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:enabled="true"
+        android:text="@string/eastern"/>
+    <CheckBox
+        android:id="@+id/american"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:enabled="true"
+        android:text="@string/american"/>
+    <CheckBox
+        android:id="@+id/russian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:enabled="true"
+        android:text="@string/russian"/>
+    <CheckBox
+        android:id="@+id/mediterranean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:enabled="true"
+        android:text="@string/mediterranean"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ok_filter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_the_recipes"
+        />
+
+</LinearLayout>

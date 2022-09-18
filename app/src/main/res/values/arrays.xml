@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="category_items" tools:ignore="InconsistentArrays">
+        <item>@string/european</item>
+        <item>@string/asian</item>
+        <item>@string/panasian</item>
+        <item>@string/eastern</item>
+        <item>@string/american</item>
+        <item>@string/russian</item>
+        <item>@string/mediterranean</item>
+    </string-array>
+</resources>

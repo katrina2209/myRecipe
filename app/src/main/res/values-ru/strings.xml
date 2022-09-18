@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Мой рецепт</string>
+    <string name="recipe_picture">Картинка рецепта</string>
+    <string name="favorite">Избранное</string>
+    <string name="all_recipes">Все рецепты</string>
+    <string name="add_recipe">Добавить рецепт</string>
+    <string name="save">Сохранить и закрыть</string>
+    <string name="save_and_add">Сохранить шаг и добавить еще один</string>
+    <string name="add_photo">Добавить фото</string>
+    <string name="category_recipe">Категория рецепта</string>
+    <string name="steps_recipe">Шаги приготовления</string>
+    <string name="step_photo">Фото шага</string>
+    <string name="add_info_photo">Добавьте информацию и фотографии</string>
+    <string name="recipe_content_fragment">Новый рецепт / Изменить рецепт</string>
+    <string name="feed_fragment">Все рецепты</string>
+    <string name="title_recipe">Название рецепта *</string>
+    <string name="remove">Удалить</string>
+    <string name="menu_edit">Изменить</string>
+    <string name="no_recipes">К сожалению, здесь нет рецептов. Пожалуйста, нажмите Добавить рецепт, чтобы добавить новый рецепт.</string>
+    <string name="search_recipes">Поиск рецептов</string>
+    <string name="favorite_recipes">Избранные рецепты</string>
+    <string name="choose_the_categories">Выберите категории</string>
+    <string name="european">Европейская</string>
+    <string name="asian">Азиатская</string>
+    <string name="panasian">Паназиатская</string>
+    <string name="eastern">Восточная</string>
+    <string name="american">Американская</string>
+    <string name="russian">Русская</string>
+    <string name="mediterranean">Средиземноморская</string>
+    <string name="filters">Фильтры</string>
+    <string name="show_the_recipes">Показать рецепты</string>
+    <string name="add_step">Add step</string>
+</resources>
