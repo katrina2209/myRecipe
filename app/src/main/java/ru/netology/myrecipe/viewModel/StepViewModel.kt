@@ -7,6 +7,7 @@ import ru.netology.myrecipe.adapter.StepInteractionListener
 import ru.netology.myrecipe.data.Recipe
 import ru.netology.myrecipe.data.RecipeRepository
 import ru.netology.myrecipe.data.RecipeRepositoryImpl
+import ru.netology.myrecipe.data.Step
 import ru.netology.myrecipe.db.AppDb
 
 class StepViewModel(
@@ -27,43 +28,38 @@ class StepViewModel(
 //    val navigateToRecipeCardFragmentEvent = SingleLiveEvent<Int>()
 
     private val currentRecipe = MutableLiveData<Recipe?>(null)
-    private val currentStep = MutableLiveData<String?>(null)
+    private val currentStep = MutableLiveData<Step?>(null)
 
-//    fun onSaveButtonClicked(
-//        title: String, category: String, steps: String, pictureUrl: String?
-//    ) {
-//
-//        if (title.isBlank()) return
-//        //if (category.isBlank()) return
-//        if (steps.isEmpty()) return
-//        val recipe =
-//            currentRecipe.value?.copy(
-//                title = title,
-//                category = category,
-//                steps = steps,
-//                pictureUrl = pictureUrl
-//            ) ?: Recipe(
-//                id = RecipeRepository.NEW_RECIPE_ID,
-//                author = "Me",
-//                title = title,
-//                category = category,
-//                steps = steps,
-//                pictureUrl = pictureUrl
-//            )
-//        repository.save(recipe)
-//        currentRecipe.value = null
-//    }
+    fun onAddStepButtonClicked(
+        text: String
+    ) {
+        if (text.isBlank()) return
+
+        val step =
+            currentStep.value?.copy(
+                text = text
+            ) ?: currentRecipe.value?.let {
+                Step(
+                    id = RecipeRepository.NEW_STEP_ID,
+                    text = text,
+                    it.id
+                )
+            }
+        //currentRecipe.value?.steps?.plusAssign(step)
+
+        //currentRecipe.value = null
+    }
 
 
 // region RecipeInteractionListener
 
 
-    override fun onRemoveStepClicked(step: String) {
+    override fun onRemoveStepClicked(step: Step) {
         currentStep.value = null
-       // repository.save(currentRecipe)
+        // repository.save(currentRecipe)
     }
 
-    override fun onEditStepClicked(step: String) {
+    override fun onEditStepClicked(step: Step) {
         currentStep.value = step
     }
 

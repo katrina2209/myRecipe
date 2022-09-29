@@ -5,42 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.FeedFragment"
-    tools:ignore="ExtraText">
+    tools:ignore="ExtraText"
 
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        style="@style/SearchViewStyle"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="5dp"
-        android:padding="2dp"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/button_to_filters"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/recipesRecyclerView"
-        android:layout_width="0dp"
-        app:queryHint="Search recipes" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_to_filters"
+    >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myToolbar"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        app:iconGravity="textEnd"
-        android:text="@null"
-        app:icon="@drawable/ic_filter_24dp"
-        app:layout_constraintBottom_toTopOf="@id/recipesRecyclerView"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/search_view"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:menu="@menu/search_menu"
+        tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            style="@style/SearchViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="5dp"
+            android:padding="2dp"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/recipesRecyclerView"
+            app:layout_constraintEnd_toStartOf="@id/myToolbar"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="Search recipes" />
+
+    <!--    <com.google.android.material.button.MaterialButton-->
+    <!--        android:id="@+id/button_to_filters"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginEnd="8dp"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="@null"-->
+    <!--        app:icon="@drawable/ic_filter_24dp"-->
+    <!--        app:iconGravity="textEnd"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/recipesRecyclerView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/search_view"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:ignore="SpeakableTextPresentCheck" />-->
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -49,7 +58,7 @@
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_view"
+        app:layout_constraintTop_toBottomOf="@id/myToolbar"
         tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/recipe" />
 
@@ -59,8 +68,8 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_empty_dataset"
-        app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -72,15 +81,23 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        android:visibility="gone"
         android:text="@string/no_recipes"
         android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/empty_data_pic" />
     />
 
+    <TextView
+        android:id="@+id/focus_field"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

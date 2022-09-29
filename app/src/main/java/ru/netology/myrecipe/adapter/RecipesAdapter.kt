@@ -74,7 +74,7 @@ class RecipesAdapter(
                 title.text = recipe.title
                 author.text = recipe.author
                 category.text = recipe.category
-                content.text = recipe.steps.split("&").joinToString("\n")
+                content.text = recipe.steps?.joinToString("\n") ?: ""
                 favorite.isChecked = recipe.favoriteForMe
             }
         }

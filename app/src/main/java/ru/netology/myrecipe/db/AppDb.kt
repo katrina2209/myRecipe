@@ -6,9 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [RecipeEntity::class],
-    version = 1
+    entities = [RecipeEntity::class, StepEntity::class],
+    version = 3
 )
+
 abstract class AppDb : RoomDatabase() {
     abstract val recipeDao: RecipeDao
 
@@ -29,3 +30,4 @@ abstract class AppDb : RoomDatabase() {
                 .build()
     }
 }
+

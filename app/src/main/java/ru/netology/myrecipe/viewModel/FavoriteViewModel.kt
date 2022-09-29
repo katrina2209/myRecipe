@@ -2,13 +2,9 @@ package ru.netology.myrecipe.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.myrecipe.adapter.RecipeInteractionListener
-import ru.netology.myrecipe.data.EditRecipeResult
-import ru.netology.myrecipe.data.Recipe
-import ru.netology.myrecipe.data.RecipeRepository
-import ru.netology.myrecipe.data.RecipeRepositoryImpl
+import ru.netology.myrecipe.data.*
 import ru.netology.myrecipe.db.AppDb
 import ru.netology.myrecipe.util.SingleLiveEvent
 
@@ -25,7 +21,7 @@ class FavoriteViewModel(
 
     val dataFavorite get() = repository.dataFavorite
 
-    val navigateToRecipeContentScreenEvent = SingleLiveEvent<EditRecipeResult?>()
+    val navigateToRecipeContentScreenEvent = SingleLiveEvent<Recipe>()
     val navigateToRecipeCardFragmentEvent = SingleLiveEvent<Int>()
 
 
@@ -33,7 +29,7 @@ class FavoriteViewModel(
 
 
     fun onSaveButtonClicked(
-        title: String, category: String, steps: String, pictureUrl: String?
+        title: String, category: String, steps: List<Step>, pictureUrl: String?
     ) {
 
         if (title.isBlank()) return
@@ -42,14 +38,14 @@ class FavoriteViewModel(
                 title = title,
                 category = category,
                 steps = steps,
-                pictureUrl = pictureUrl
+
             ) ?: Recipe(
                 id = RecipeRepository.NEW_RECIPE_ID,
                 author = "Me",
                 title = title,
                 category = category,
                 steps = steps,
-                pictureUrl = pictureUrl
+
             )
         repository.save(recipe)
         currentRecipe.value = null
@@ -72,9 +68,8 @@ class FavoriteViewModel(
 
     override fun onEditClicked(recipe: Recipe) {
         currentRecipe.value = recipe
-        navigateToRecipeContentScreenEvent.value =
-            EditRecipeResult(recipe.title, recipe.category, recipe.steps, recipe.pictureUrl)
-    }
+        navigateToRecipeContentScreenEvent.value =recipe
+             }
 
     override fun onRecipeClicked(recipe: Recipe) {
         currentRecipe.value = recipe
