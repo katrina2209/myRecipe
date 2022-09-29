@@ -1,39 +1,37 @@
 package ru.netology.myrecipe.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import ru.netology.myrecipe.db.RecipeDao
 import ru.netology.myrecipe.db.toEntity
-import ru.netology.myrecipe.db.toModel
+import ru.netology.myrecipe.db.toRecipe
+
 
 class RecipeRepositoryImpl(private val dao: RecipeDao) : RecipeRepository {
 
 
     override var data: LiveData<List<Recipe>> = dao.getAll().map { entities ->
-        entities.map { it.toModel() }
+        entities.map {
+            it.toRecipe()
+        }
     }
 
     override var dataFavorite = dao.getFavorite().map { entities ->
-        entities.map { it.toModel() }
+        entities.map { it.toRecipe() }
     }
 
-    override fun getAll(): LiveData<List<Recipe>> = data
+    override fun getAll():
+            LiveData<List<Recipe>> = data
 
 
     override fun save(recipe: Recipe) {
         if (recipe.id == RecipeRepository.NEW_RECIPE_ID) dao.insert(recipe.toEntity()) else
-
-            recipe.pictureUrl?.let {
-                dao.updateContentById(
-                    recipe.id,
-                    recipe.title,
-                    recipe.author,
-                    recipe.category,
-                    recipe.steps,
-                    it
-                )
-            }
+            dao.updateContentById(
+                recipe.id,
+                recipe.title,
+                recipe.author,
+                recipe.category
+            )
     }
 
 
@@ -48,22 +46,42 @@ class RecipeRepositoryImpl(private val dao: RecipeDao) : RecipeRepository {
 
     override fun searchDatabase(searchQuery: String) {
         data = dao.searchDatabase(searchQuery).map { entities ->
-            entities.map { it.toModel() }
+            entities.map { it.toRecipe() }
         }
     }
 
     override fun searchFavoriteDatabase(searchQuery: String) {
         dataFavorite = dao.searchFavoriteDatabase(searchQuery).map { entities ->
-            entities.map { it.toModel() }
+            entities.map { it.toRecipe() }
         }
     }
 
-    //override fun filterByCategory(categories: ArrayList<String>) {
+
+    override fun clearFilters() {
+        data = dao.getAll().map { entities ->
+            entities.map { it.toRecipe() }
+        }
+    }
+
+    override fun deleteStep(step: Step) {
+        dao.deleteStep(step.id)
+    }
+
+    override fun saveStep(step: Step) {
+        if (step.id == RecipeRepository.NEW_STEP_ID) step.toEntity()?.let { dao.insertStep(it) }
+        else step.text?.let {
+            dao.updateStep(
+                step.id,
+                it,
+                step.idRecipe
+            )
+        }
+    }
 
 
     override fun searchByCategory(categories: ArrayList<String>) {
         data = dao.searchByCategory(categories).map { entities ->
-            entities.map { it.toModel() }
+            entities.map { it.toRecipe() }
         }
     }
 

@@ -30,4 +30,6 @@
     <string name="filters">Filters</string>
     <string name="show_the_recipes">Show the recipes</string>
     <string name="add_step">Add step</string>
+    <string name="clear_filters">Clear filters</string>
+    <string name="step_text">Step text</string>
 </resources>

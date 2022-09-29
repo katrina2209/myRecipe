@@ -59,22 +59,40 @@
             android:name="initialTitle"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="true"/>
         <argument
             android:name="initialCategory"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="true"/>
         <argument
             android:name="initialSteps"
             android:defaultValue=""
             app:argType="string"
-            app:nullable="true" />
+            app:nullable="true"/>
+
+        <action
+            android:id="@+id/action_recipeContentFragment_to_stepContentFragment"
+            app:destination="@id/step_content_fragment" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/step_content_fragment"
+        android:name="ru.netology.myrecipe.ui.StepContentFragment"
+        android:label="@string/step_text"
+        tools:layout="@layout/step_content_fragment">
         <argument
-            android:name="initialPictureUrl"
+            android:name="stepId"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="initialText"
             android:defaultValue=""
             app:argType="string"
             app:nullable="true" />
+
     </fragment>
 
     <fragment

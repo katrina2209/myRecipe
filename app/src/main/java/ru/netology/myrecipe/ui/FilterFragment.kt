@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.clearFragmentResult
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import ru.netology.myrecipe.R
@@ -37,6 +38,7 @@ class FilterFragment : Fragment() {
 
     private fun onOkFilterButtonClicked(binding: FilterFragmentBinding) {
 
+
         var numberOfCheckedCategories = 0
 
         val listOfCheckedCategories : ArrayList<String> = ArrayList()
@@ -44,36 +46,43 @@ class FilterFragment : Fragment() {
         if (binding.european.isChecked) {
             listOfCheckedCategories.add(binding.european.text.toString())
             numberOfCheckedCategories++
+            //findNavController().popBackStack()
         }
 
         if (binding.asian.isChecked) {
             listOfCheckedCategories.add(binding.asian.text.toString())
             numberOfCheckedCategories++
+          //  findNavController().popBackStack()
         }
 
         if (binding.panasian.isChecked) {
             listOfCheckedCategories.add(binding.panasian.text.toString())
             numberOfCheckedCategories++
+          //  findNavController().popBackStack()
         }
 
         if (binding.eastern.isChecked) {
             listOfCheckedCategories.add(binding.eastern.text.toString())
             numberOfCheckedCategories++
+          //  findNavController().popBackStack()
         }
 
         if (binding.american.isChecked) {
             listOfCheckedCategories.add(binding.american.text.toString())
             numberOfCheckedCategories++
+          //  findNavController().popBackStack()
         }
 
         if (binding.russian.isChecked) {
             listOfCheckedCategories.add(binding.russian.text.toString())
             numberOfCheckedCategories++
+           // findNavController().popBackStack()
         }
 
         if (binding.mediterranean.isChecked) {
             listOfCheckedCategories.add(binding.mediterranean.text.toString())
             numberOfCheckedCategories++
+           // findNavController().popBackStack()
         }
 
         if (numberOfCheckedCategories == 0) {

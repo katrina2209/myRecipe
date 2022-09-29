@@ -29,5 +29,7 @@
     <string name="mediterranean">Средиземноморская</string>
     <string name="filters">Фильтры</string>
     <string name="show_the_recipes">Показать рецепты</string>
-    <string name="add_step">Add step</string>
+    <string name="add_step">Добавить шаг</string>
+    <string name="clear_filters">Очистить фильтры</string>
+    <string name="step_text">Текст шага</string>
 </resources>

@@ -2,61 +2,81 @@ package ru.netology.myrecipe.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import android.widget.PopupMenu
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.myrecipe.R
+import ru.netology.myrecipe.data.Step
+import ru.netology.myrecipe.databinding.StepBinding
 
-class StepsAdapter(
-    private var steps: List<String>
-
-) : RecyclerView.Adapter<StepsAdapter.ViewHolder>() {
-
-    private var listSteps: MutableList<String> = steps as MutableList<String>
+internal class StepsAdapter(
+    private val interactionListener: StepInteractionListener
+) : ListAdapter<Step, StepsAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.step, parent, false)
-        return ViewHolder(itemView)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = StepBinding.inflate(inflater, parent, false)
+        return ViewHolder(binding, interactionListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listSteps[position], position)
-        //holder.stepText.text = steps[position]
+        val stepItem = differ.currentList[position]
+        holder.bind(stepItem)
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun deleteItem(index: Int) {
-        listSteps.removeAt(index)
-        notifyDataSetChanged()
-    }
-
-//    fun editItem(index: Int){
-//      // TODO
-//    }
-
-    fun getItems() = listSteps
 
     inner class ViewHolder(
-        itemView: View
-    ) : RecyclerView.ViewHolder(itemView) {
+        private val binding: StepBinding,
+        listener: StepInteractionListener
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(text: String, index: Int) {
-            val buttonDeleteStep = itemView.findViewById<Button>(R.id.button_delete_step)
-            //val buttonEditStep = itemView.findViewById<Button>(R.id.button_edit_step)
-            val stepText: TextView = itemView.findViewById(R.id.step_text)
-            stepText.text = text
-            buttonDeleteStep.setOnClickListener { deleteItem(index) }
-            //buttonEditStep.setOnClickListener { editItem(index) }
+        private lateinit var step: Step
+
+        private val popupMenu by lazy {
+            PopupMenu(itemView.context, binding.optionsStep).apply {
+                inflate(R.menu.options_recipe)
+                setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.remove -> {
+                            listener.onRemoveStepClicked(step)
+                            true
+                        }
+                        R.id.edit -> {
+                            listener.onEditStepClicked(step)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+            }
         }
 
+        init {
+            binding.optionsStep.setOnClickListener { popupMenu.show() }
+        }
+
+        @SuppressLint("SetTextI18n")
+        fun bind(step: Step) {
+            this.step = step
+
+            with(binding) {
+                stepText.text = step.text
+            }
+        }
     }
 
-    override fun getItemCount() = steps.size
+    private object DiffCallback : DiffUtil.ItemCallback<Step>() {
 
+        override fun areItemsTheSame(oldItem: Step, newItem: Step) =
+            oldItem == newItem
 
+        override fun areContentsTheSame(oldItem: Step, newItem: Step) =
+            oldItem.text == newItem.text
+    }
+
+    val differ = AsyncListDiffer(this, DiffCallback)
 }

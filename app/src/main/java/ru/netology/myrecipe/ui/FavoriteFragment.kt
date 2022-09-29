@@ -10,8 +10,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
 import ru.netology.myrecipe.adapter.RecipesAdapter
+import ru.netology.myrecipe.data.Step
 import ru.netology.myrecipe.databinding.FavoriteFragmentBinding
+
 import ru.netology.myrecipe.viewModel.FavoriteViewModel
 
 class FavoriteFragment : Fragment() {
@@ -32,13 +35,13 @@ class FavoriteFragment : Fragment() {
                 bundle.getString("newRecipeTitle") ?: return@setFragmentResultListener
             val newRecipeCategory =
                 bundle.getString("newRecipeCategory")
-            val newRecipeSteps = bundle.getString("newRecipeSteps") //?.split("&")
+            //val newRecipeSteps = bundle.getString("newRecipeSteps") //?.split("&")
             val newPictureUrl = bundle.getString("newPictureUrl")
 
             viewModel.onSaveButtonClicked(
                 newRecipeTitle,
                 newRecipeCategory.orEmpty(),
-                newRecipeSteps.orEmpty(), //.toMutableList(),
+                emptyList(),//newRecipeSteps.orEmpty(), //.toMutableList(),
                 newPictureUrl
             )
         }
@@ -53,7 +56,8 @@ class FavoriteFragment : Fragment() {
         val adapter = RecipesAdapter(viewModel)
         binding.recipesRecyclerView.adapter = adapter
 
-
+        binding.searchView.clearFocus()
+        binding.recipesRecyclerView.requestFocus()
 
         viewModel.dataFavorite.observe(viewLifecycleOwner) { recipes ->
             if (recipes.isNullOrEmpty()) {
@@ -71,13 +75,12 @@ class FavoriteFragment : Fragment() {
         }
 
 
-        viewModel.navigateToRecipeContentScreenEvent.observe(viewLifecycleOwner) { editRecipeResult ->
+        viewModel.navigateToRecipeContentScreenEvent.observe(viewLifecycleOwner) { recipe ->
             val direction =
                 FavoriteFragmentDirections.actionFavoriteFragmentToRecipeContentFragment(
-                    editRecipeResult?.newTitle,
-                    editRecipeResult?.newCategory,
-                    editRecipeResult?.newSteps, //?.joinToString("&"),
-                    editRecipeResult?.pictureUrl
+                    recipe.title,
+                    recipe.category,
+                    Gson().toJson(recipe.steps)
                 )
             findNavController().navigate(direction)
         }

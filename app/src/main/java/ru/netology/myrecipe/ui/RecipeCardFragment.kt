@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.gson.Gson
 import ru.netology.myrecipe.R
 import ru.netology.myrecipe.adapter.RecipesAdapter
 import ru.netology.myrecipe.databinding.RecipeCardFragmentBinding
@@ -61,13 +62,13 @@ class RecipeCardFragment : Fragment() {
         }
 
 
-        viewModel.navigateToRecipeContentScreenEvent.observe(viewLifecycleOwner) { editRecipeResult ->
+        viewModel.navigateToRecipeContentScreenEvent.observe(viewLifecycleOwner) { recipe ->
+            val initialSteps: String? = Gson().toJson(recipe.steps)
             val direction =
                 RecipeCardFragmentDirections.actionRecipeCardFragmentToRecipeContentFragment(
-                    editRecipeResult?.newTitle,
-                    editRecipeResult?.newCategory,
-                    editRecipeResult?.newSteps, //?.joinToString("&"),
-                    editRecipeResult?.pictureUrl
+                    recipe.title,
+                    recipe.category,
+                    initialSteps
                 )
             findNavController().navigate(direction)
         }

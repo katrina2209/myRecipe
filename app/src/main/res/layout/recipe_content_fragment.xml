@@ -73,20 +73,20 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/steps_recipe">
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+            <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:hint="@string/steps_recipe">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_steps_recipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:endIconMode="clear_text"
-                    tools:ignore="TextContrastCheck" />
+            <!--                <com.google.android.material.textfield.TextInputEditText-->
+            <!--                    android:id="@+id/edit_steps_recipe"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    app:endIconMode="clear_text"-->
+            <!--                    tools:ignore="TextContrastCheck" />-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+            <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
 
             <LinearLayout
@@ -120,17 +120,20 @@
             <!--                android:scaleType="fitStart"-->
             <!--                tools:src="@drawable/recipe_picture" />-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/stepsRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/add_step_button"
-                tools:layout_editor_absoluteX="0dp"
-                tools:listitem="@layout/step" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/stepsRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/add_step_button"
+                            tools:layout_editor_absoluteX="0dp"
+                            tools:listitem="@layout/step" />
+
+
 
         </LinearLayout>
+
 
     </ScrollView>
 
